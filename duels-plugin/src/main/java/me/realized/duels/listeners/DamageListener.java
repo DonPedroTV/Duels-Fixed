@@ -27,8 +27,8 @@ public class DamageListener implements Listener {
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
-    public void on(final EntityDamageByEntityEvent event) {
-        if (!event.isCancelled() || !(event.getEntity() instanceof Player)) {
+    public void onDamage(final EntityDamageByEntityEvent event) {
+        if (!(event.getEntity() instanceof Player)) {
             return;
         }
 
@@ -46,6 +46,11 @@ public class DamageListener implements Listener {
             return;
         }
 
+        arena.getMatch().addDamageToPlayer(damager, event.getFinalDamage());
+
+        if(!event.isCancelled()) return;
+
         event.setCancelled(false);
     }
+
 }
