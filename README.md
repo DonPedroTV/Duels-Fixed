@@ -2,7 +2,7 @@
 
 [![](https://jitpack.io/v/Realizedd/Duels.svg)](https://jitpack.io/#Realizedd/Duels)
 
-A duel plugin for spigot. <a href="https://www.spigotmc.org/resources/duels.20171/">Spigot Project Page</a>
+Old original un-updated plugin version. <a href="https://www.spigotmc.org/resources/duels.20171/">Spigot Project Page</a>
 
 ---
 
@@ -13,7 +13,6 @@ A duel plugin for spigot. <a href="https://www.spigotmc.org/resources/duels.2017
 * **[Extensions](https://github.com/Realizedd/Duels/wiki/extensions)**
 * **[config.yml](https://github.com/Realizedd/Duels/blob/master/duels-plugin/src/main/resources/config.yml)**
 * **[lang.yml](https://github.com/Realizedd/Duels/blob/master/duels-plugin/src/main/resources/lang.yml)**
-* **[Support Discord](https://discord.gg/RNy45sg)**
 
 
 ### Getting the dependency
