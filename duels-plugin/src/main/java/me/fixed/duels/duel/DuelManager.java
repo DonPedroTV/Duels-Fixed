@@ -213,6 +213,10 @@ public class DuelManager implements Loadable {
             PlayerUtil.reset(player);
             playerManager.remove(player);
 
+            if (!(match.isOwnInventory() && config.isOwnInventoryDropInventoryItems())) {
+                PlayerUtil.reset(player);
+            }
+
             if (info != null) {
                 teleport.tryTeleport(player, info.getLocation());
                 info.restore(player);
