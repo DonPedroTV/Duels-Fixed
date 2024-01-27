@@ -210,7 +210,7 @@ public class DuelManager implements Loadable {
         final List<ItemStack> items = match.getItems(player);
 
         if (alive) {
-            PlayerUtil.reset(player);
+//            PlayerUtil.reset(player);
             playerManager.remove(player);
 
             if (!(match.isOwnInventory() && config.isOwnInventoryDropInventoryItems())) {
