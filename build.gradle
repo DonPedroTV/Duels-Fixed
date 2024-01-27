@@ -1,0 +1,68 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+    }
+
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.4'
+    }
+}
+
+allprojects {
+    group 'me.realized'
+    version '3.5.3'
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'java-library'
+    apply plugin: 'com.github.johnrengelman.shadow'
+    apply plugin: 'maven-publish'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    repositories {
+        mavenCentral()
+
+        maven {
+            name 'spigot-repo'
+            url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+        }
+
+        maven {
+            name 'bungeecord-repo'
+            url 'https://oss.sonatype.org/content/repositories/snapshots/'
+        }
+
+        maven {
+            name 'mojang-repo'
+            url 'https://libraries.minecraft.net/'
+        }
+
+        maven {
+            name 'clip-repo'
+            url 'https://repo.extendedclip.com/content/repositories/placeholderapi/'
+        }
+
+        maven {
+            name 'enginehub-repo'
+            url 'https://maven.enginehub.org/repo/'
+        }
+
+        maven {
+            name 'codemc-repo'
+            url 'https://repo.codemc.io/repository/maven-public/'
+        }
+
+        maven {
+            name 'essentialsx-repo'
+            url 'https://repo.essentialsx.net/releases/'
+        }
+
+        flatDir {
+            dirs "$rootDir/libs/"
+        }
+    }
+}

@@ -1,0 +1,80 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+clean.doFirst {
+    delete "$rootDir/out/"
+}
+
+processResources {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+
+    from(sourceSets.main.resources.srcDirs) {
+        include '**/*.yml'
+        filter(ReplaceTokens, tokens: [VERSION: project.version])
+    }
+}
+
+dependencies {
+    compileOnly 'org.jetbrains:annotations-java5:22.0.0'
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+    implementation 'org.spigotmc:spigot-api:1.14.4-R0.1-SNAPSHOT'
+    implementation 'com.mojang:authlib:1.5.21'
+    implementation 'me.clip:placeholderapi:2.11.1'
+    implementation 'com.SirBlobman.combatlogx:CombatLogX-API:10.0.0.0-SNAPSHOT'
+    implementation ('net.essentialsx:EssentialsX:2.19.2') {
+        transitive = false
+    }
+    implementation (name: 'MVdWPlaceholderAPI-3.1.1') {
+        transitive = false
+    }
+    implementation name: 'Vault-1.6.7'
+    implementation name: 'CombatTagPlus'
+    implementation name: 'PvPManager-3.7.16'
+    implementation name: 'Factions-1.6.9.5-U0.1.14'
+    implementation name: 'MassiveCore'
+    implementation name: 'Factions'
+    implementation name: 'MyPet-2.3.4'
+    implementation name: 'BountyHunters-2.2.6'
+    implementation name: 'SimpleClans-2.14.4.1'
+    implementation name: 'LeaderHeadsAPI'
+
+    implementation project(':duels-api')
+    implementation project(':duels-worldguard')
+    implementation project(':duels-worldguard-v6')
+    implementation project(':duels-worldguard-v7')
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.1'
+}
+
+shadowJar {
+    getDestinationDirectory().set(file("$rootDir/out/"))
+
+    final String archiveName = parent.name + '-' + project.version + '.jar'
+    getArchiveFileName().set(archiveName)
+
+    dependencies {
+        include(project(':duels-api'))
+        include(project(':duels-worldguard'))
+        include(project(':duels-worldguard-v6'))
+        include(project(':duels-worldguard-v7'))
+        include(dependency('com.fasterxml.jackson.core:.*'))
+    }
+
+    final String group = project.group.toString() + "." + parent.name.toLowerCase() + ".shaded."
+    relocate 'com.fasterxml.jackson.core', group + 'jackson-core'
+}
+
+// To build Duels plugin jar, run './gradlew clean build'.
+build {
+    dependsOn(shadowJar)
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = project.group.toString()
+            artifactId = project.name.toLowerCase()
+            version = project.version
+            from components.java
+        }
+    }
+}
