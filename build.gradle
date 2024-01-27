@@ -10,7 +10,7 @@ buildscript {
 }
 
 allprojects {
-    group 'me.realized'
+    group 'me.fixed'
     version '3.5.3'
 }
 
