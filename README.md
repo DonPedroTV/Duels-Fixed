@@ -6,14 +6,6 @@ Old original un-updated plugin version. <a href="https://www.spigotmc.org/resour
 
 ---
 
-* **[Wiki](https://github.com/Realizedd/Duels/wiki)**
-* **[Commands](https://github.com/Realizedd/Duels/wiki/commands)**
-* **[Permissions](https://github.com/Realizedd/Duels/wiki/permissions)**
-* **[Placeholders](https://github.com/Realizedd/Duels/wiki/placeholders)**
-* **[Extensions](https://github.com/Realizedd/Duels/wiki/extensions)**
-* **[config.yml](https://github.com/Realizedd/Duels/blob/master/duels-plugin/src/main/resources/config.yml)**
-* **[lang.yml](https://github.com/Realizedd/Duels/blob/master/duels-plugin/src/main/resources/lang.yml)**
-
 
 ### Getting the dependency
 
