@@ -34,25 +34,23 @@ public final class PlayerUtil {
     }
 
     public static void reset(final Player player) {
-        Bukkit.getScheduler().scheduleSyncDelayedTask(DuelsPlugin.getInstance(), () -> {
-            player.closeInventory();
+        player.setFireTicks(0);
+        player.getActivePotionEffects().forEach(effect -> player.removePotionEffect(effect.getType()));
+        setMaxHealth(player);
+        player.setExhaustion(DEFAULT_EXHAUSTION);
+        player.setSaturation(DEFAULT_SATURATION);
+        player.setFoodLevel(DEFAULT_MAX_FOOD_LEVEL);
+        player.setItemOnCursor(null);
 
-            player.setFireTicks(0);
-            player.getActivePotionEffects().forEach(effect -> player.removePotionEffect(effect.getType()));
-            setMaxHealth(player);
-            player.setFoodLevel(DEFAULT_MAX_FOOD_LEVEL);
-            player.setItemOnCursor(null);
+        final Inventory top = player.getOpenInventory().getTopInventory();
 
-            final Inventory top = player.getOpenInventory().getTopInventory();
+        if (top.getType() == InventoryType.CRAFTING) {
+            top.clear();
+        }
 
-            if (top != null && top.getType() == InventoryType.CRAFTING) {
-                top.clear();
-            }
-
-            player.getInventory().setArmorContents(new ItemStack[4]);
-            player.getInventory().clear();
-            player.updateInventory();
-        }, 2L);
+        player.getInventory().setArmorContents(new ItemStack[4]);
+        player.getInventory().clear();
+        player.updateInventory();
     }
 
     private PlayerUtil() {}
